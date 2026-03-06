@@ -365,7 +365,8 @@ input[type="number"]::placeholder {
   color: var(--text);
   background: transparent;
   outline: none;
-  -moz-appearance: textfield
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .config-num::-webkit-outer-spin-button,
@@ -593,12 +594,14 @@ input[type="number"] {
   color: var(--text);
   background: transparent;
   -moz-appearance: textfield;
+  appearance: textfield;
   outline: none
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .range-wrapper {
@@ -623,6 +626,7 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -1188,7 +1192,9 @@ footer {
 .wa-btn:active {
   background: #1da851;
   transform: scale(.97)
-}.header-flex {
+}
+
+.header-flex {
   display: flex;
   align-items: center;
   gap: 1.2rem;
