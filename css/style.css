@@ -1192,7 +1192,7 @@ footer {
   gap: 1.6rem;
   text-align: left;
   padding: 2rem 1.8rem;
-  background: var(--white);
+  background: #e9e6df;
   border-radius: 20px;
   border: 1.5px solid var(--border);
   box-shadow: 0 4px 24px var(--shadow);
