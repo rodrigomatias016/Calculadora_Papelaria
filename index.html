@@ -1,310 +1,774 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Tícia Artes · Calculadora de Preços</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Tícia Artes · Calculadora de Preços</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div class="wrapper">
+  <div class="wrapper">
 
-<header>
-  <div class="header-badge">✨ Tícia Artes</div>
-  <h1><em>Tícia Artes</em><br>Calculadora de Preços</h1>
-  <p class="subtitle">Preços sugeridos com base em pesquisa de mercado — Elo7, Lado B, A.Craft, Bromelia e grandes papelarias</p>
-</header>
+    <header>
+      <img src="img/logo.png" alt="Tícia Artes Logo" class="brand-logo">
+      <div class="header-badge">✨ Tícia Artes</div>
+      <h1><em>Tícia Artes</em><br>Calculadora de Preços</h1>
+      <p class="subtitle">Preços sugeridos com base em pesquisa de mercado — Elo7, Lado B, A.Craft, Bromelia e grandes
+        papelarias</p>
+    </header>
 
-<div class="market-bar">
-  <div class="market-bar-title">Produtos reais pesquisados</div>
-  <div class="market-refs">
-    <div class="ref-chip"><strong>Planner artesanal A5</strong> — R$138,30 (Lado B)</div>
-    <div class="ref-chip"><strong>Caderno personalizado</strong> — R$58,30 (Elo7)</div>
-    <div class="ref-chip"><strong>Folha de adesivos</strong> — R$10,90 (Imagicriar)</div>
-    <div class="ref-chip"><strong>Kit papelaria presente</strong> — R$95–R$180 (Elo7)</div>
-    <div class="ref-chip"><strong>Washi tape (un)</strong> — R$9–R$22 (A.Craft)</div>
-    <div class="ref-chip"><strong>Carimbo decorativo</strong> — R$28–R$65 (Elo7)</div>
-    <div class="ref-chip"><strong>Bloquinho A6 artesanal</strong> — R$22–R$45 (Elo7)</div>
-  </div>
-</div>
-
-<div class="product-selector">
-  <div class="section-label">Escolha o tipo de produto</div>
-  <div class="product-grid">
-    <button class="product-btn active" onclick="selectProduct(this,'planner')"><span class="emoji">📓</span>Planner / Agenda</button>
-    <button class="product-btn" onclick="selectProduct(this,'caderno')"><span class="emoji">📒</span>Caderno / Diário</button>
-    <button class="product-btn" onclick="selectProduct(this,'adesivos')"><span class="emoji">🏷️</span>Folha de Adesivos</button>
-    <button class="product-btn" onclick="selectProduct(this,'kit')"><span class="emoji">🎁</span>Kit / Presente</button>
-    <button class="product-btn" onclick="selectProduct(this,'washi')"><span class="emoji">🎀</span>Washi Tape</button>
-    <button class="product-btn" onclick="selectProduct(this,'carimbo')"><span class="emoji">🔖</span>Carimbo / Stamp</button>
-    <button class="product-btn" onclick="selectProduct(this,'bloco')"><span class="emoji">📋</span>Bloco de Notas</button>
-    <button class="product-btn" onclick="selectProduct(this,'outro')"><span class="emoji">✨</span>Outro Produto</button>
-  </div>
-</div>
-
-<!-- PLANNER -->
-<div id="painel-planner" class="mat-painel show">
-  <div class="painel-header"><span class="painel-icon">📓</span><div><div class="painel-title">Assistente de Materiais — Planner / Agenda</div><div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="pl-folhas">Nº de páginas / folhas</label><div class="config-input-wrap"><input class="config-num" id="pl-folhas" type="number" min="10" max="500" step="5" value="100" inputmode="numeric" oninput="estimar('planner')"><span class="config-suffix">folhas</span></div></div>
-    <div><label class="config-label" for="pl-tam">Tamanho</label><select class="config-select" id="pl-tam" onchange="estimar('planner')"><option value="a5">A5 (14,8×21 cm)</option><option value="a4">A4 (21×29,7 cm)</option><option value="a6">A6 Mini</option></select></div>
-    <div><label class="config-label" for="pl-papel">Tipo de papel</label><select class="config-select" id="pl-papel" onchange="estimar('planner')"><option value="offset90">Offset 90g (padrão)</option><option value="polen90">Pólen 90g</option><option value="offset120">Offset 120g (premium)</option></select></div>
-    <div><label class="config-label" for="pl-enc">Encadernação</label><select class="config-select" id="pl-enc" onchange="estimar('planner')"><option value="wireo">Wire-o (duplo anel)</option><option value="espiral">Espiral plástico</option><option value="costura">Costura artesanal</option></select></div>
-    <div><label class="config-label" for="pl-capa">Capa</label><select class="config-select" id="pl-capa" onchange="estimar('planner')"><option value="papelao_laminado">Papelão + laminação fosca</option><option value="papelao_simples">Papelão simples</option><option value="capa_kraft">Kraft artesanal</option></select></div>
-    <div><label class="config-label" for="pl-imp">Impressão do miolo</label><select class="config-select" id="pl-imp" onchange="estimar('planner')"><option value="colorido">Colorido (gráfica)</option><option value="pb">P&B pautas (gráfica)</option><option value="propria">Impressora própria</option><option value="sem">Sem impressão</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">📄 Papel do miolo</div><div class="est-card-value" id="pl-v1">—</div><div class="est-card-detail" id="pl-d1">—</div><div class="est-card-source" id="pl-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Capa & acabamento</div><div class="est-card-value" id="pl-v2">—</div><div class="est-card-detail" id="pl-d2">—</div><div class="est-card-source" id="pl-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Impressão</div><div class="est-card-value" id="pl-v3">—</div><div class="est-card-detail" id="pl-d3">—</div><div class="est-card-source" id="pl-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('planner','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('planner','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Fortini Paper, JMC Shop, Marpax, gráficas — dez/2024). Clique em Aplicar para preencher os campos abaixo.</div>
-</div>
-
-<!-- CADERNO -->
-<div id="painel-caderno" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">📒</span><div><div class="painel-title">Assistente de Materiais — Caderno / Diário</div><div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="ca-folhas">Nº de folhas do miolo</label><div class="config-input-wrap"><input class="config-num" id="ca-folhas" type="number" min="10" max="400" step="5" value="80" inputmode="numeric" oninput="estimar('caderno')"><span class="config-suffix">folhas</span></div></div>
-    <div><label class="config-label" for="ca-tam">Tamanho</label><select class="config-select" id="ca-tam" onchange="estimar('caderno')"><option value="a5">A5 (14,8×21 cm)</option><option value="a4">A4 (21×29,7 cm)</option><option value="a6">A6 Mini</option></select></div>
-    <div><label class="config-label" for="ca-papel">Tipo de papel</label><select class="config-select" id="ca-papel" onchange="estimar('caderno')"><option value="offset90">Offset 90g (padrão)</option><option value="polen90">Pólen 90g</option><option value="offset75">Offset 75g (econômico)</option><option value="offset120">Offset 120g (premium)</option></select></div>
-    <div><label class="config-label" for="ca-enc">Encadernação</label><select class="config-select" id="ca-enc" onchange="estimar('caderno')"><option value="wireo">Wire-o (duplo anel)</option><option value="espiral">Espiral plástico</option><option value="costura">Costura artesanal</option><option value="coladacanoa">Colada / Canoa</option></select></div>
-    <div><label class="config-label" for="ca-capa">Capa</label><select class="config-select" id="ca-capa" onchange="estimar('caderno')"><option value="papelao_laminado">Papelão + laminação fosca</option><option value="papelao_simples">Papelão simples</option><option value="capa_kraft">Kraft artesanal</option><option value="tecido">Tecido / EVA</option></select></div>
-    <div><label class="config-label" for="ca-imp">Impressão do miolo</label><select class="config-select" id="ca-imp" onchange="estimar('caderno')"><option value="sem">Sem impressão</option><option value="pb">P&B pautas (gráfica)</option><option value="colorido">Colorido (gráfica)</option><option value="propria">Impressora própria</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">📄 Papel do miolo</div><div class="est-card-value" id="ca-v1">—</div><div class="est-card-detail" id="ca-d1">—</div><div class="est-card-source" id="ca-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Capa & acabamento</div><div class="est-card-value" id="ca-v2">—</div><div class="est-card-detail" id="ca-d2">—</div><div class="est-card-source" id="ca-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Impressão</div><div class="est-card-value" id="ca-v3">—</div><div class="est-card-detail" id="ca-d3">—</div><div class="est-card-source" id="ca-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('caderno','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('caderno','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Fortini Paper, JMC Shop, Marpax, gráficas — dez/2024). Clique em Aplicar para preencher os campos abaixo.</div>
-</div>
-
-<!-- ADESIVOS -->
-<div id="painel-adesivos" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">🏷️</span><div><div class="painel-title">Assistente de Materiais — Folha de Adesivos</div><div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="ad-folhas">Qtd. de folhas por lote</label><div class="config-input-wrap"><input class="config-num" id="ad-folhas" type="number" min="1" max="200" step="1" value="10" inputmode="numeric" oninput="estimar('adesivos')"><span class="config-suffix">folhas</span></div></div>
-    <div><label class="config-label" for="ad-tam">Tamanho da folha</label><select class="config-select" id="ad-tam" onchange="estimar('adesivos')"><option value="a5">A5 (cartela padrão)</option><option value="a4">A4 (folha inteira)</option><option value="a6">A6 (mini cartela)</option></select></div>
-    <div><label class="config-label" for="ad-papel">Tipo de papel adesivo</label><select class="config-select" id="ad-papel" onchange="estimar('adesivos')"><option value="adesivo_brilho">Adesivo brilho (inkjet)</option><option value="adesivo_fosco">Adesivo fosco (inkjet)</option><option value="adesivo_transparente">Adesivo transparente</option><option value="adesivo_premium">Adesivo holográfico</option></select></div>
-    <div><label class="config-label" for="ad-imp">Impressão</label><select class="config-select" id="ad-imp" onchange="estimar('adesivos')"><option value="propria">Impressora própria (inkjet)</option><option value="grafica">Gráfica digital</option><option value="plotagem">Plotagem (corte)</option></select></div>
-    <div><label class="config-label" for="ad-acab">Acabamento / corte</label><select class="config-select" id="ad-acab" onchange="estimar('adesivos')"><option value="tesoura">Tesoura / guilhotina</option><option value="silhouette">Plotter de corte (amortizado)</option><option value="grafica_corte">Corte gráfica incluso</option></select></div>
-    <div><label class="config-label" for="ad-emb">Embalagem</label><select class="config-select" id="ad-emb" onchange="estimar('adesivos')"><option value="envelope">Envelope kraft + plástico</option><option value="plastico">Saquinho plástico</option><option value="sem">Sem embalagem extra</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">🏷️ Papel adesivo</div><div class="est-card-value" id="ad-v1">—</div><div class="est-card-detail" id="ad-d1">—</div><div class="est-card-source" id="ad-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Impressão / corte</div><div class="est-card-value" id="ad-v2">—</div><div class="est-card-detail" id="ad-d2">—</div><div class="est-card-source" id="ad-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Embalagem</div><div class="est-card-value" id="ad-v3">—</div><div class="est-card-detail" id="ad-d3">—</div><div class="est-card-source" id="ad-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('adesivos','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('adesivos','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Mercado Livre, Lavoro Papéis, gráficas — dez/2024).</div>
-</div>
-
-<!-- KIT -->
-<div id="painel-kit" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">🎁</span><div><div class="painel-title">Assistente de Materiais — Kit / Presente</div><div class="painel-subtitle">Configure os itens do kit e receba estimativa de custo</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="ki-tam">Tamanho do kit</label><select class="config-select" id="ki-tam" onchange="estimar('kit')"><option value="p">Pequeno (2–3 itens)</option><option value="m">Médio (4–6 itens)</option><option value="g">Grande (7+ itens)</option></select></div>
-    <div><label class="config-label" for="ki-emb">Embalagem principal</label><select class="config-select" id="ki-emb" onchange="estimar('kit')"><option value="caixa_kraft">Caixa kraft artesanal</option><option value="caixa_presente">Caixa presente rígida</option><option value="sacola_kraft">Sacola kraft + papel seda</option><option value="cesto">Cestinha / bandeja decorada</option></select></div>
-    <div><label class="config-label" for="ki-itens">Itens do kit</label><select class="config-select" id="ki-itens" onchange="estimar('kit')"><option value="papelaria">Papelaria (caderno, caneta, adesivos)</option><option value="washi">Washi tapes + adesivos + marcadores</option><option value="escolar">Kit escolar (bloco, lápis, borracha)</option><option value="planner">Planner + acessórios</option></select></div>
-    <div><label class="config-label" for="ki-deco">Decoração / acabamento</label><select class="config-select" id="ki-deco" onchange="estimar('kit')"><option value="laco_tag">Laço + tag personalizada</option><option value="papel_seda">Papel seda + fita cetim</option><option value="minimo">Minimalista (sem decoração)</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">📦 Embalagem</div><div class="est-card-value" id="ki-v1">—</div><div class="est-card-detail" id="ki-d1">—</div><div class="est-card-source" id="ki-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">🎀 Itens do kit</div><div class="est-card-value" id="ki-v2">—</div><div class="est-card-detail" id="ki-d2">—</div><div class="est-card-source" id="ki-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">✨ Decoração</div><div class="est-card-value" id="ki-v3">—</div><div class="est-card-detail" id="ki-d3">—</div><div class="est-card-source" id="ki-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('kit','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('kit','mat')">↓ Só embalagem + itens</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Recopel, Santa Cecília, atacados SP — dez/2024).</div>
-</div>
-
-<!-- WASHI -->
-<div id="painel-washi" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">🎀</span><div><div class="painel-title">Assistente de Materiais — Washi Tape</div><div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="wa-rolos">Qtd. de rolos no produto</label><div class="config-input-wrap"><input class="config-num" id="wa-rolos" type="number" min="1" max="20" step="1" value="1" inputmode="numeric" oninput="estimar('washi')"><span class="config-suffix">rolos</span></div></div>
-    <div><label class="config-label" for="wa-tipo">Tipo de washi tape</label><select class="config-select" id="wa-tipo" onchange="estimar('washi')"><option value="simples">Simples (papel básico)</option><option value="premium">Premium (estampado importado)</option><option value="pet">PET / transparente</option><option value="custom">Customizado (impresso por você)</option></select></div>
-    <div><label class="config-label" for="wa-larg">Largura do rolo</label><select class="config-select" id="wa-larg" onchange="estimar('washi')"><option value="15mm">15 mm (padrão)</option><option value="10mm">10 mm (fino)</option><option value="25mm">25 mm (largo)</option></select></div>
-    <div><label class="config-label" for="wa-emb">Embalagem</label><select class="config-select" id="wa-emb" onchange="estimar('washi')"><option value="saquinho">Saquinho plástico + tag</option><option value="caixa">Caixinha decorada</option><option value="sem">Sem embalagem extra</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">🎀 Washi tape (rolos)</div><div class="est-card-value" id="wa-v1">—</div><div class="est-card-detail" id="wa-d1">—</div><div class="est-card-source" id="wa-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Embalagem</div><div class="est-card-value" id="wa-v2">—</div><div class="est-card-detail" id="wa-d2">—</div><div class="est-card-source" id="wa-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Impressão custom</div><div class="est-card-value" id="wa-v3">—</div><div class="est-card-detail" id="wa-d3">—</div><div class="est-card-source" id="wa-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('washi','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('washi','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Papelândia Atacado, Star Papelaria, A.Craft — dez/2024).</div>
-</div>
-
-<!-- CARIMBO -->
-<div id="painel-carimbo" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">🔖</span><div><div class="painel-title">Assistente de Materiais — Carimbo / Stamp</div><div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="cb-tam">Tamanho do carimbo</label><select class="config-select" id="cb-tam" onchange="estimar('carimbo')"><option value="p">Pequeno (até 3×3 cm)</option><option value="m">Médio (até 5×5 cm)</option><option value="g">Grande (até 8×8 cm)</option></select></div>
-    <div><label class="config-label" for="cb-mat">Material da borracha</label><select class="config-select" id="cb-mat" onchange="estimar('carimbo')"><option value="polimero">Polímero gravado</option><option value="borracha">Borracha artesanal entalhada</option><option value="eva">EVA (econômico)</option></select></div>
-    <div><label class="config-label" for="cb-cabo">Cabo / suporte</label><select class="config-select" id="cb-cabo" onchange="estimar('carimbo')"><option value="madeira">Cabo de madeira</option><option value="acrilico">Base acrílico transparente</option><option value="sem">Sem cabo</option></select></div>
-    <div><label class="config-label" for="cb-tinta">Inclui almofada de tinta?</label><select class="config-select" id="cb-tinta" onchange="estimar('carimbo')"><option value="nao">Não inclui</option><option value="sim">Sim, inclui almofada</option></select></div>
-    <div><label class="config-label" for="cb-emb">Embalagem</label><select class="config-select" id="cb-emb" onchange="estimar('carimbo')"><option value="caixinha">Caixinha + papel seda</option><option value="saquinho">Saquinho + tag</option><option value="sem">Sem embalagem extra</option></select></div>
-    <div><label class="config-label" for="cb-grav">Gravação / plotagem</label><select class="config-select" id="cb-grav" onchange="estimar('carimbo')"><option value="terceirizado">Terceirizado (laser/gráfica)</option><option value="manual">Entalhe manual</option><option value="propria">Máquina própria (amortizado)</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">🔖 Borracha + cabo</div><div class="est-card-value" id="cb-v1">—</div><div class="est-card-detail" id="cb-d1">—</div><div class="est-card-source" id="cb-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Gravação</div><div class="est-card-value" id="cb-v2">—</div><div class="est-card-detail" id="cb-d2">—</div><div class="est-card-source" id="cb-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Embalagem</div><div class="est-card-value" id="cb-v3">—</div><div class="est-card-detail" id="cb-d3">—</div><div class="est-card-source" id="cb-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('carimbo','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('carimbo','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Criattiva Carimbos, Mercado Livre, gráficas — dez/2024).</div>
-</div>
-
-<!-- BLOCO -->
-<div id="painel-bloco" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">📋</span><div><div class="painel-title">Assistente de Materiais — Bloco de Notas</div><div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="bl-folhas">Nº de folhas do bloco</label><div class="config-input-wrap"><input class="config-num" id="bl-folhas" type="number" min="10" max="200" step="5" value="50" inputmode="numeric" oninput="estimar('bloco')"><span class="config-suffix">folhas</span></div></div>
-    <div><label class="config-label" for="bl-tam">Tamanho</label><select class="config-select" id="bl-tam" onchange="estimar('bloco')"><option value="a6">A6 (10,5×14,8 cm)</option><option value="a5">A5 (14,8×21 cm)</option><option value="pequeno">Pequeno / Post-it</option></select></div>
-    <div><label class="config-label" for="bl-papel">Tipo de papel</label><select class="config-select" id="bl-papel" onchange="estimar('bloco')"><option value="offset75">Offset 75g (econômico)</option><option value="offset90">Offset 90g (padrão)</option><option value="Polen90">Pólen 90g (premium)</option></select></div>
-    <div><label class="config-label" for="bl-enc">Acabamento / encadernação</label><select class="config-select" id="bl-enc" onchange="estimar('bloco')"><option value="cola">Colado na cabeça (blocagem)</option><option value="espiral">Espiral plástico</option><option value="grampo">Grampeado</option></select></div>
-    <div><label class="config-label" for="bl-capa">Capa</label><select class="config-select" id="bl-capa" onchange="estimar('bloco')"><option value="papelao_simples">Papelão simples</option><option value="papelao_laminado">Papelão + laminação fosca</option><option value="papel_grosso">Papel grosso 240g</option><option value="sem">Sem capa rígida</option></select></div>
-    <div><label class="config-label" for="bl-imp">Impressão</label><select class="config-select" id="bl-imp" onchange="estimar('bloco')"><option value="sem">Sem impressão</option><option value="pb">P&B pautas (gráfica)</option><option value="colorido">Colorido (gráfica)</option><option value="propria">Impressora própria</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">📄 Papel do bloco</div><div class="est-card-value" id="bl-v1">—</div><div class="est-card-detail" id="bl-d1">—</div><div class="est-card-source" id="bl-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Capa & colagem</div><div class="est-card-value" id="bl-v2">—</div><div class="est-card-detail" id="bl-d2">—</div><div class="est-card-source" id="bl-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Impressão</div><div class="est-card-value" id="bl-v3">—</div><div class="est-card-detail" id="bl-d3">—</div><div class="est-card-source" id="bl-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('bloco','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('bloco','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Fortini Paper, Marpax, gráficas — dez/2024).</div>
-</div>
-
-<!-- OUTRO -->
-<div id="painel-outro" class="mat-painel">
-  <div class="painel-header"><span class="painel-icon">✨</span><div><div class="painel-title">Assistente de Materiais — Produto Livre</div><div class="painel-subtitle">Estime custos para qualquer produto artesanal</div></div></div>
-  <div class="config-grid">
-    <div><label class="config-label" for="ou-cat">Categoria geral</label><select class="config-select" id="ou-cat" onchange="estimar('outro')"><option value="papelaria">Papelaria geral</option><option value="marcapagina">Marca-página / tag</option><option value="envelope">Envelope / cartão</option><option value="organizador">Organizador / fichário</option></select></div>
-    <div><label class="config-label" for="ou-porte">Porte do produto</label><select class="config-select" id="ou-porte" onchange="estimar('outro')"><option value="pequeno">Pequeno</option><option value="medio">Médio</option><option value="grande">Grande / elaborado</option></select></div>
-    <div><label class="config-label" for="ou-emb">Embalagem</label><select class="config-select" id="ou-emb" onchange="estimar('outro')"><option value="saquinho">Saquinho plástico</option><option value="envelope_kraft">Envelope kraft</option><option value="caixa">Caixinha</option><option value="sem">Sem embalagem</option></select></div>
-    <div><label class="config-label" for="ou-imp">Impressão necessária</label><select class="config-select" id="ou-imp" onchange="estimar('outro')"><option value="sem">Sem impressão</option><option value="pb">P&B (gráfica)</option><option value="colorido">Colorido (gráfica)</option><option value="propria">Impressora própria</option></select></div>
-  </div>
-  <div class="est-cards">
-    <div class="est-card"><div class="est-card-label">🎨 Materiais</div><div class="est-card-value" id="ou-v1">—</div><div class="est-card-detail" id="ou-d1">—</div><div class="est-card-source" id="ou-s1">—</div></div>
-    <div class="est-card"><div class="est-card-label">📦 Embalagem</div><div class="est-card-value" id="ou-v2">—</div><div class="est-card-detail" id="ou-d2">—</div><div class="est-card-source" id="ou-s2">—</div></div>
-    <div class="est-card"><div class="est-card-label">🖨️ Impressão</div><div class="est-card-value" id="ou-v3">—</div><div class="est-card-detail" id="ou-d3">—</div><div class="est-card-source" id="ou-s3">—</div></div>
-  </div>
-  <div class="apply-row"><button class="apply-btn" onclick="aplicar('outro','all')">✦ Aplicar todos os valores</button><button class="apply-btn green" onclick="aplicar('outro','mat')">↓ Só materiais</button></div>
-  <div class="painel-note"><strong>💡 Estimativa genérica:</strong> valores aproximados para referência. Para maior precisão, preencha os campos manualmente.</div>
-</div>
-
-<!-- FORMULÁRIO PRINCIPAL -->
-<div class="calc-grid">
-  <div class="card">
-    <div class="card-title"><span class="dot"></span> Custos de Produção</div>
-    <div class="field">
-      <label>Materiais <span>(papel, tinta, capa, arame…)</span></label>
-      <div class="input-wrap" id="w-mat"><span class="prefix">R$</span><input type="number" id="materiais" min="0" step="0.01" placeholder="ex: 12,50" inputmode="decimal" oninput="recalc()"></div>
-    </div>
-    <div class="field">
-      <label>Embalagem <span>(caixa, kraft, laço…)</span></label>
-      <div class="input-wrap" id="w-emb"><span class="prefix">R$</span><input type="number" id="embalagem" min="0" step="0.01" placeholder="ex: 4,00" inputmode="decimal" oninput="recalc()"></div>
-    </div>
-    <div class="field">
-      <label>Impressão / Plotagem</label>
-      <div class="input-wrap" id="w-imp"><span class="prefix">R$</span><input type="number" id="impressao" min="0" step="0.01" placeholder="ex: 8,00" inputmode="decimal" oninput="recalc()"></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title"><span class="dot green"></span> Seu Trabalho</div>
-    <div class="field">
-      <label>Tempo de produção <span>(horas)</span></label>
-      <div class="input-wrap"><span class="prefix">h</span><input type="number" id="horas" min="0" step="0.5" placeholder="ex: 2" inputmode="decimal" oninput="recalc()"></div>
-    </div>
-    <div class="field">
-      <label>Valor da sua hora</label>
-      <div class="input-wrap"><span class="prefix">R$</span><input type="number" id="valorHora" min="0" step="1" placeholder="ex: 25" inputmode="decimal" oninput="recalc()"></div>
-    </div>
-    <div class="field">
-      <label>Qtd. produzida <span>(peças no lote)</span></label>
-      <div class="input-wrap"><span class="prefix">un</span><input type="number" id="quantidade" min="1" step="1" value="1" inputmode="numeric" oninput="recalc()"></div>
-    </div>
-  </div>
-  <div class="card full">
-    <div class="card-title"><span class="dot yellow"></span> Margem &amp; Taxas</div>
-    <div class="field">
-      <label>Margem de lucro desejada</label>
-      <div class="range-wrapper">
-        <input type="range" id="margem" min="20" max="200" value="100" oninput="updateRange(this,'margemVal','%');recalc()">
-        <span class="range-value" id="margemVal">100%</span>
+    <div class="market-bar">
+      <div class="market-bar-title">Produtos reais pesquisados</div>
+      <div class="market-refs">
+        <div class="ref-chip"><strong>Planner artesanal A5</strong> — R$138,30 (Lado B)</div>
+        <div class="ref-chip"><strong>Caderno personalizado</strong> — R$58,30 (Elo7)</div>
+        <div class="ref-chip"><strong>Folha de adesivos</strong> — R$10,90 (Imagicriar)</div>
+        <div class="ref-chip"><strong>Kit papelaria presente</strong> — R$95–R$180 (Elo7)</div>
+        <div class="ref-chip"><strong>Washi tape (un)</strong> — R$9–R$22 (A.Craft)</div>
+        <div class="ref-chip"><strong>Carimbo decorativo</strong> — R$28–R$65 (Elo7)</div>
+        <div class="ref-chip"><strong>Bloquinho A6 artesanal</strong> — R$22–R$45 (Elo7)</div>
       </div>
     </div>
-    <div class="toggle-row">
-      <div class="toggle-text"><div class="toggle-label">Taxa de plataforma</div><div class="toggle-sublabel">Elo7, ML, Instagram (+15%)</div></div>
-      <label class="toggle"><input type="checkbox" id="taxaPlataforma" onchange="recalc()"><span class="slider-toggle"></span></label>
+
+    <div class="product-selector">
+      <div class="section-label">Escolha o tipo de produto</div>
+      <div class="product-grid">
+        <button class="product-btn active" onclick="selectProduct(this,'planner')"><span class="emoji">📓</span>Planner
+          / Agenda</button>
+        <button class="product-btn" onclick="selectProduct(this,'caderno')"><span class="emoji">📒</span>Caderno /
+          Diário</button>
+        <button class="product-btn" onclick="selectProduct(this,'adesivos')"><span class="emoji">🏷️</span>Folha de
+          Adesivos</button>
+        <button class="product-btn" onclick="selectProduct(this,'kit')"><span class="emoji">🎁</span>Kit /
+          Presente</button>
+        <button class="product-btn" onclick="selectProduct(this,'washi')"><span class="emoji">🎀</span>Washi
+          Tape</button>
+        <button class="product-btn" onclick="selectProduct(this,'carimbo')"><span class="emoji">🔖</span>Carimbo /
+          Stamp</button>
+        <button class="product-btn" onclick="selectProduct(this,'bloco')"><span class="emoji">📋</span>Bloco de
+          Notas</button>
+        <button class="product-btn" onclick="selectProduct(this,'outro')"><span class="emoji">✨</span>Outro
+          Produto</button>
+      </div>
     </div>
-    <div class="toggle-row">
-      <div class="toggle-text"><div class="toggle-label">Produto personalizado</div><div class="toggle-sublabel">Exclusividade (+20%)</div></div>
-      <label class="toggle"><input type="checkbox" id="personalizado" onchange="recalc()"><span class="slider-toggle"></span></label>
+
+    <!-- PLANNER -->
+    <div id="painel-planner" class="mat-painel show">
+      <div class="painel-header"><span class="painel-icon">📓</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Planner / Agenda</div>
+          <div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="pl-folhas">Nº de páginas / folhas</label>
+          <div class="config-input-wrap"><input class="config-num" id="pl-folhas" type="number" min="10" max="500"
+              step="5" value="100" inputmode="numeric" oninput="estimar('planner')"><span
+              class="config-suffix">folhas</span></div>
+        </div>
+        <div><label class="config-label" for="pl-tam">Tamanho</label><select class="config-select" id="pl-tam"
+            onchange="estimar('planner')">
+            <option value="a5">A5 (14,8×21 cm)</option>
+            <option value="a4">A4 (21×29,7 cm)</option>
+            <option value="a6">A6 Mini</option>
+          </select></div>
+        <div><label class="config-label" for="pl-papel">Tipo de papel</label><select class="config-select" id="pl-papel"
+            onchange="estimar('planner')">
+            <option value="offset90">Offset 90g (padrão)</option>
+            <option value="polen90">Pólen 90g</option>
+            <option value="offset120">Offset 120g (premium)</option>
+          </select></div>
+        <div><label class="config-label" for="pl-enc">Encadernação</label><select class="config-select" id="pl-enc"
+            onchange="estimar('planner')">
+            <option value="wireo">Wire-o (duplo anel)</option>
+            <option value="espiral">Espiral plástico</option>
+            <option value="costura">Costura artesanal</option>
+          </select></div>
+        <div><label class="config-label" for="pl-capa">Capa</label><select class="config-select" id="pl-capa"
+            onchange="estimar('planner')">
+            <option value="papelao_laminado">Papelão + laminação fosca</option>
+            <option value="papelao_simples">Papelão simples</option>
+            <option value="capa_kraft">Kraft artesanal</option>
+          </select></div>
+        <div><label class="config-label" for="pl-imp">Impressão do miolo</label><select class="config-select"
+            id="pl-imp" onchange="estimar('planner')">
+            <option value="colorido">Colorido (gráfica)</option>
+            <option value="pb">P&B pautas (gráfica)</option>
+            <option value="propria">Impressora própria</option>
+            <option value="sem">Sem impressão</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">📄 Papel do miolo</div>
+          <div class="est-card-value" id="pl-v1">—</div>
+          <div class="est-card-detail" id="pl-d1">—</div>
+          <div class="est-card-source" id="pl-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Capa & acabamento</div>
+          <div class="est-card-value" id="pl-v2">—</div>
+          <div class="est-card-detail" id="pl-d2">—</div>
+          <div class="est-card-source" id="pl-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Impressão</div>
+          <div class="est-card-value" id="pl-v3">—</div>
+          <div class="est-card-detail" id="pl-d3">—</div>
+          <div class="est-card-source" id="pl-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('planner','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('planner','mat')">↓ Só materiais</button>
+      </div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Fortini Paper,
+        JMC Shop, Marpax, gráficas — dez/2024). Clique em Aplicar para preencher os campos abaixo.</div>
     </div>
-    <div class="toggle-row">
-      <div class="toggle-text"><div class="toggle-label">Frete incluso no preço</div><div class="toggle-sublabel">Adiciona R$18 ao total</div></div>
-      <label class="toggle"><input type="checkbox" id="freteIncluso" onchange="recalc()"><span class="slider-toggle"></span></label>
+
+    <!-- CADERNO -->
+    <div id="painel-caderno" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">📒</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Caderno / Diário</div>
+          <div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="ca-folhas">Nº de folhas do miolo</label>
+          <div class="config-input-wrap"><input class="config-num" id="ca-folhas" type="number" min="10" max="400"
+              step="5" value="80" inputmode="numeric" oninput="estimar('caderno')"><span
+              class="config-suffix">folhas</span></div>
+        </div>
+        <div><label class="config-label" for="ca-tam">Tamanho</label><select class="config-select" id="ca-tam"
+            onchange="estimar('caderno')">
+            <option value="a5">A5 (14,8×21 cm)</option>
+            <option value="a4">A4 (21×29,7 cm)</option>
+            <option value="a6">A6 Mini</option>
+          </select></div>
+        <div><label class="config-label" for="ca-papel">Tipo de papel</label><select class="config-select" id="ca-papel"
+            onchange="estimar('caderno')">
+            <option value="offset90">Offset 90g (padrão)</option>
+            <option value="polen90">Pólen 90g</option>
+            <option value="offset75">Offset 75g (econômico)</option>
+            <option value="offset120">Offset 120g (premium)</option>
+          </select></div>
+        <div><label class="config-label" for="ca-enc">Encadernação</label><select class="config-select" id="ca-enc"
+            onchange="estimar('caderno')">
+            <option value="wireo">Wire-o (duplo anel)</option>
+            <option value="espiral">Espiral plástico</option>
+            <option value="costura">Costura artesanal</option>
+            <option value="coladacanoa">Colada / Canoa</option>
+          </select></div>
+        <div><label class="config-label" for="ca-capa">Capa</label><select class="config-select" id="ca-capa"
+            onchange="estimar('caderno')">
+            <option value="papelao_laminado">Papelão + laminação fosca</option>
+            <option value="papelao_simples">Papelão simples</option>
+            <option value="capa_kraft">Kraft artesanal</option>
+            <option value="tecido">Tecido / EVA</option>
+          </select></div>
+        <div><label class="config-label" for="ca-imp">Impressão do miolo</label><select class="config-select"
+            id="ca-imp" onchange="estimar('caderno')">
+            <option value="sem">Sem impressão</option>
+            <option value="pb">P&B pautas (gráfica)</option>
+            <option value="colorido">Colorido (gráfica)</option>
+            <option value="propria">Impressora própria</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">📄 Papel do miolo</div>
+          <div class="est-card-value" id="ca-v1">—</div>
+          <div class="est-card-detail" id="ca-d1">—</div>
+          <div class="est-card-source" id="ca-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Capa & acabamento</div>
+          <div class="est-card-value" id="ca-v2">—</div>
+          <div class="est-card-detail" id="ca-d2">—</div>
+          <div class="est-card-source" id="ca-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Impressão</div>
+          <div class="est-card-value" id="ca-v3">—</div>
+          <div class="est-card-detail" id="ca-d3">—</div>
+          <div class="est-card-source" id="ca-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('caderno','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('caderno','mat')">↓ Só materiais</button>
+      </div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Fortini Paper,
+        JMC Shop, Marpax, gráficas — dez/2024). Clique em Aplicar para preencher os campos abaixo.</div>
     </div>
-  </div>
-</div>
 
-<div class="btn-row">
-  <button class="btn btn-primary" onclick="calcular()">✦ Calcular Preço</button>
-  <button class="btn btn-secondary" onclick="limpar()">↺ Limpar</button>
-</div>
-
-<div class="result-card" id="resultCard">
-  <div class="result-label">Previsão de preço de venda</div>
-  <div class="price-range">
-    <span class="price-min" id="priceMin">—</span>
-    <span class="price-sep">a</span>
-    <span class="price-max" id="priceMax">—</span>
-    <span class="price-ideal" id="priceIdeal"></span>
-  </div>
-  <div class="result-breakdown">
-    <div class="breakdown-item"><div class="breakdown-name">Custo material</div><div class="breakdown-value rose" id="bCusto">—</div></div>
-    <div class="breakdown-item"><div class="breakdown-name">Mão de obra</div><div class="breakdown-value rose" id="bMaoObra">—</div></div>
-    <div class="breakdown-item"><div class="breakdown-name">Lucro por peça</div><div class="breakdown-value green" id="bLucro">—</div></div>
-    <div class="breakdown-item"><div class="breakdown-name">Margem real</div><div class="breakdown-value yellow" id="bMargem">—</div></div>
-    <div class="breakdown-item"><div class="breakdown-name">Preço mínimo</div><div class="breakdown-value" id="bMin">—</div></div>
-    <div class="breakdown-item"><div class="breakdown-name">Preço sugerido</div><div class="breakdown-value" id="bSug">—</div></div>
-  </div>
-  <div class="alert-box" id="alertBox" style="display:none"></div>
-  <div class="wa-section">
-    <div class="wa-label">📤 Compartilhar orçamento</div>
-    <div class="wa-input-row">
-      <input class="wa-input" id="waNomeProduto" type="text" placeholder="Nome do produto (ex: Planner Floral A5)" maxlength="80">
-      <button class="wa-btn" onclick="enviarWhatsApp()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.14 1.544 5.874L.057 23.428a.5.5 0 0 0 .614.614l5.554-1.487A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.898 9.898 0 0 1-5.031-1.371l-.361-.214-3.737 1.001 1.001-3.737-.214-.361A9.898 9.898 0 0 1 2.106 12C2.106 6.527 6.527 2.106 12 2.106S21.894 6.527 21.894 12 17.473 21.894 12 21.894z"/></svg>
-        Enviar pelo WhatsApp
-      </button>
+    <!-- ADESIVOS -->
+    <div id="painel-adesivos" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">🏷️</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Folha de Adesivos</div>
+          <div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="ad-folhas">Qtd. de folhas por lote</label>
+          <div class="config-input-wrap"><input class="config-num" id="ad-folhas" type="number" min="1" max="200"
+              step="1" value="10" inputmode="numeric" oninput="estimar('adesivos')"><span
+              class="config-suffix">folhas</span></div>
+        </div>
+        <div><label class="config-label" for="ad-tam">Tamanho da folha</label><select class="config-select" id="ad-tam"
+            onchange="estimar('adesivos')">
+            <option value="a5">A5 (cartela padrão)</option>
+            <option value="a4">A4 (folha inteira)</option>
+            <option value="a6">A6 (mini cartela)</option>
+          </select></div>
+        <div><label class="config-label" for="ad-papel">Tipo de papel adesivo</label><select class="config-select"
+            id="ad-papel" onchange="estimar('adesivos')">
+            <option value="adesivo_brilho">Adesivo brilho (inkjet)</option>
+            <option value="adesivo_fosco">Adesivo fosco (inkjet)</option>
+            <option value="adesivo_transparente">Adesivo transparente</option>
+            <option value="adesivo_premium">Adesivo holográfico</option>
+          </select></div>
+        <div><label class="config-label" for="ad-imp">Impressão</label><select class="config-select" id="ad-imp"
+            onchange="estimar('adesivos')">
+            <option value="propria">Impressora própria (inkjet)</option>
+            <option value="grafica">Gráfica digital</option>
+            <option value="plotagem">Plotagem (corte)</option>
+          </select></div>
+        <div><label class="config-label" for="ad-acab">Acabamento / corte</label><select class="config-select"
+            id="ad-acab" onchange="estimar('adesivos')">
+            <option value="tesoura">Tesoura / guilhotina</option>
+            <option value="silhouette">Plotter de corte (amortizado)</option>
+            <option value="grafica_corte">Corte gráfica incluso</option>
+          </select></div>
+        <div><label class="config-label" for="ad-emb">Embalagem</label><select class="config-select" id="ad-emb"
+            onchange="estimar('adesivos')">
+            <option value="envelope">Envelope kraft + plástico</option>
+            <option value="plastico">Saquinho plástico</option>
+            <option value="sem">Sem embalagem extra</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">🏷️ Papel adesivo</div>
+          <div class="est-card-value" id="ad-v1">—</div>
+          <div class="est-card-detail" id="ad-d1">—</div>
+          <div class="est-card-source" id="ad-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Impressão / corte</div>
+          <div class="est-card-value" id="ad-v2">—</div>
+          <div class="est-card-detail" id="ad-d2">—</div>
+          <div class="est-card-source" id="ad-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Embalagem</div>
+          <div class="est-card-value" id="ad-v3">—</div>
+          <div class="est-card-detail" id="ad-d3">—</div>
+          <div class="est-card-source" id="ad-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('adesivos','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('adesivos','mat')">↓ Só materiais</button>
+      </div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Mercado Livre,
+        Lavoro Papéis, gráficas — dez/2024).</div>
     </div>
+
+    <!-- KIT -->
+    <div id="painel-kit" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">🎁</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Kit / Presente</div>
+          <div class="painel-subtitle">Configure os itens do kit e receba estimativa de custo</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="ki-tam">Tamanho do kit</label><select class="config-select" id="ki-tam"
+            onchange="estimar('kit')">
+            <option value="p">Pequeno (2–3 itens)</option>
+            <option value="m">Médio (4–6 itens)</option>
+            <option value="g">Grande (7+ itens)</option>
+          </select></div>
+        <div><label class="config-label" for="ki-emb">Embalagem principal</label><select class="config-select"
+            id="ki-emb" onchange="estimar('kit')">
+            <option value="caixa_kraft">Caixa kraft artesanal</option>
+            <option value="caixa_presente">Caixa presente rígida</option>
+            <option value="sacola_kraft">Sacola kraft + papel seda</option>
+            <option value="cesto">Cestinha / bandeja decorada</option>
+          </select></div>
+        <div><label class="config-label" for="ki-itens">Itens do kit</label><select class="config-select" id="ki-itens"
+            onchange="estimar('kit')">
+            <option value="papelaria">Papelaria (caderno, caneta, adesivos)</option>
+            <option value="washi">Washi tapes + adesivos + marcadores</option>
+            <option value="escolar">Kit escolar (bloco, lápis, borracha)</option>
+            <option value="planner">Planner + acessórios</option>
+          </select></div>
+        <div><label class="config-label" for="ki-deco">Decoração / acabamento</label><select class="config-select"
+            id="ki-deco" onchange="estimar('kit')">
+            <option value="laco_tag">Laço + tag personalizada</option>
+            <option value="papel_seda">Papel seda + fita cetim</option>
+            <option value="minimo">Minimalista (sem decoração)</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">📦 Embalagem</div>
+          <div class="est-card-value" id="ki-v1">—</div>
+          <div class="est-card-detail" id="ki-d1">—</div>
+          <div class="est-card-source" id="ki-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🎀 Itens do kit</div>
+          <div class="est-card-value" id="ki-v2">—</div>
+          <div class="est-card-detail" id="ki-d2">—</div>
+          <div class="est-card-source" id="ki-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">✨ Decoração</div>
+          <div class="est-card-value" id="ki-v3">—</div>
+          <div class="est-card-detail" id="ki-d3">—</div>
+          <div class="est-card-source" id="ki-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('kit','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('kit','mat')">↓ Só embalagem + itens</button>
+      </div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Recopel, Santa
+        Cecília, atacados SP — dez/2024).</div>
+    </div>
+
+    <!-- WASHI -->
+    <div id="painel-washi" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">🎀</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Washi Tape</div>
+          <div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="wa-rolos">Qtd. de rolos no produto</label>
+          <div class="config-input-wrap"><input class="config-num" id="wa-rolos" type="number" min="1" max="20" step="1"
+              value="1" inputmode="numeric" oninput="estimar('washi')"><span class="config-suffix">rolos</span></div>
+        </div>
+        <div><label class="config-label" for="wa-tipo">Tipo de washi tape</label><select class="config-select"
+            id="wa-tipo" onchange="estimar('washi')">
+            <option value="simples">Simples (papel básico)</option>
+            <option value="premium">Premium (estampado importado)</option>
+            <option value="pet">PET / transparente</option>
+            <option value="custom">Customizado (impresso por você)</option>
+          </select></div>
+        <div><label class="config-label" for="wa-larg">Largura do rolo</label><select class="config-select" id="wa-larg"
+            onchange="estimar('washi')">
+            <option value="15mm">15 mm (padrão)</option>
+            <option value="10mm">10 mm (fino)</option>
+            <option value="25mm">25 mm (largo)</option>
+          </select></div>
+        <div><label class="config-label" for="wa-emb">Embalagem</label><select class="config-select" id="wa-emb"
+            onchange="estimar('washi')">
+            <option value="saquinho">Saquinho plástico + tag</option>
+            <option value="caixa">Caixinha decorada</option>
+            <option value="sem">Sem embalagem extra</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">🎀 Washi tape (rolos)</div>
+          <div class="est-card-value" id="wa-v1">—</div>
+          <div class="est-card-detail" id="wa-d1">—</div>
+          <div class="est-card-source" id="wa-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Embalagem</div>
+          <div class="est-card-value" id="wa-v2">—</div>
+          <div class="est-card-detail" id="wa-d2">—</div>
+          <div class="est-card-source" id="wa-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Impressão custom</div>
+          <div class="est-card-value" id="wa-v3">—</div>
+          <div class="est-card-detail" id="wa-d3">—</div>
+          <div class="est-card-source" id="wa-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('washi','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('washi','mat')">↓ Só materiais</button></div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Papelândia
+        Atacado, Star Papelaria, A.Craft — dez/2024).</div>
+    </div>
+
+    <!-- CARIMBO -->
+    <div id="painel-carimbo" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">🔖</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Carimbo / Stamp</div>
+          <div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="cb-tam">Tamanho do carimbo</label><select class="config-select"
+            id="cb-tam" onchange="estimar('carimbo')">
+            <option value="p">Pequeno (até 3×3 cm)</option>
+            <option value="m">Médio (até 5×5 cm)</option>
+            <option value="g">Grande (até 8×8 cm)</option>
+          </select></div>
+        <div><label class="config-label" for="cb-mat">Material da borracha</label><select class="config-select"
+            id="cb-mat" onchange="estimar('carimbo')">
+            <option value="polimero">Polímero gravado</option>
+            <option value="borracha">Borracha artesanal entalhada</option>
+            <option value="eva">EVA (econômico)</option>
+          </select></div>
+        <div><label class="config-label" for="cb-cabo">Cabo / suporte</label><select class="config-select" id="cb-cabo"
+            onchange="estimar('carimbo')">
+            <option value="madeira">Cabo de madeira</option>
+            <option value="acrilico">Base acrílico transparente</option>
+            <option value="sem">Sem cabo</option>
+          </select></div>
+        <div><label class="config-label" for="cb-tinta">Inclui almofada de tinta?</label><select class="config-select"
+            id="cb-tinta" onchange="estimar('carimbo')">
+            <option value="nao">Não inclui</option>
+            <option value="sim">Sim, inclui almofada</option>
+          </select></div>
+        <div><label class="config-label" for="cb-emb">Embalagem</label><select class="config-select" id="cb-emb"
+            onchange="estimar('carimbo')">
+            <option value="caixinha">Caixinha + papel seda</option>
+            <option value="saquinho">Saquinho + tag</option>
+            <option value="sem">Sem embalagem extra</option>
+          </select></div>
+        <div><label class="config-label" for="cb-grav">Gravação / plotagem</label><select class="config-select"
+            id="cb-grav" onchange="estimar('carimbo')">
+            <option value="terceirizado">Terceirizado (laser/gráfica)</option>
+            <option value="manual">Entalhe manual</option>
+            <option value="propria">Máquina própria (amortizado)</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">🔖 Borracha + cabo</div>
+          <div class="est-card-value" id="cb-v1">—</div>
+          <div class="est-card-detail" id="cb-d1">—</div>
+          <div class="est-card-source" id="cb-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Gravação</div>
+          <div class="est-card-value" id="cb-v2">—</div>
+          <div class="est-card-detail" id="cb-d2">—</div>
+          <div class="est-card-source" id="cb-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Embalagem</div>
+          <div class="est-card-value" id="cb-v3">—</div>
+          <div class="est-card-detail" id="cb-d3">—</div>
+          <div class="est-card-source" id="cb-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('carimbo','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('carimbo','mat')">↓ Só materiais</button>
+      </div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Criattiva
+        Carimbos, Mercado Livre, gráficas — dez/2024).</div>
+    </div>
+
+    <!-- BLOCO -->
+    <div id="painel-bloco" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">📋</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Bloco de Notas</div>
+          <div class="painel-subtitle">Configure e receba estimativa baseada em preços reais pesquisados</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="bl-folhas">Nº de folhas do bloco</label>
+          <div class="config-input-wrap"><input class="config-num" id="bl-folhas" type="number" min="10" max="200"
+              step="5" value="50" inputmode="numeric" oninput="estimar('bloco')"><span
+              class="config-suffix">folhas</span></div>
+        </div>
+        <div><label class="config-label" for="bl-tam">Tamanho</label><select class="config-select" id="bl-tam"
+            onchange="estimar('bloco')">
+            <option value="a6">A6 (10,5×14,8 cm)</option>
+            <option value="a5">A5 (14,8×21 cm)</option>
+            <option value="pequeno">Pequeno / Post-it</option>
+          </select></div>
+        <div><label class="config-label" for="bl-papel">Tipo de papel</label><select class="config-select" id="bl-papel"
+            onchange="estimar('bloco')">
+            <option value="offset75">Offset 75g (econômico)</option>
+            <option value="offset90">Offset 90g (padrão)</option>
+            <option value="Polen90">Pólen 90g (premium)</option>
+          </select></div>
+        <div><label class="config-label" for="bl-enc">Acabamento / encadernação</label><select class="config-select"
+            id="bl-enc" onchange="estimar('bloco')">
+            <option value="cola">Colado na cabeça (blocagem)</option>
+            <option value="espiral">Espiral plástico</option>
+            <option value="grampo">Grampeado</option>
+          </select></div>
+        <div><label class="config-label" for="bl-capa">Capa</label><select class="config-select" id="bl-capa"
+            onchange="estimar('bloco')">
+            <option value="papelao_simples">Papelão simples</option>
+            <option value="papelao_laminado">Papelão + laminação fosca</option>
+            <option value="papel_grosso">Papel grosso 240g</option>
+            <option value="sem">Sem capa rígida</option>
+          </select></div>
+        <div><label class="config-label" for="bl-imp">Impressão</label><select class="config-select" id="bl-imp"
+            onchange="estimar('bloco')">
+            <option value="sem">Sem impressão</option>
+            <option value="pb">P&B pautas (gráfica)</option>
+            <option value="colorido">Colorido (gráfica)</option>
+            <option value="propria">Impressora própria</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">📄 Papel do bloco</div>
+          <div class="est-card-value" id="bl-v1">—</div>
+          <div class="est-card-detail" id="bl-d1">—</div>
+          <div class="est-card-source" id="bl-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Capa & colagem</div>
+          <div class="est-card-value" id="bl-v2">—</div>
+          <div class="est-card-detail" id="bl-d2">—</div>
+          <div class="est-card-source" id="bl-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Impressão</div>
+          <div class="est-card-value" id="bl-v3">—</div>
+          <div class="est-card-detail" id="bl-d3">—</div>
+          <div class="est-card-source" id="bl-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('bloco','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('bloco','mat')">↓ Só materiais</button></div>
+      <div class="painel-note"><strong>💡 Como usar:</strong> estimativas com base em preços pesquisados (Fortini Paper,
+        Marpax, gráficas — dez/2024).</div>
+    </div>
+
+    <!-- OUTRO -->
+    <div id="painel-outro" class="mat-painel">
+      <div class="painel-header"><span class="painel-icon">✨</span>
+        <div>
+          <div class="painel-title">Assistente de Materiais — Produto Livre</div>
+          <div class="painel-subtitle">Estime custos para qualquer produto artesanal</div>
+        </div>
+      </div>
+      <div class="config-grid">
+        <div><label class="config-label" for="ou-cat">Categoria geral</label><select class="config-select" id="ou-cat"
+            onchange="estimar('outro')">
+            <option value="papelaria">Papelaria geral</option>
+            <option value="marcapagina">Marca-página / tag</option>
+            <option value="envelope">Envelope / cartão</option>
+            <option value="organizador">Organizador / fichário</option>
+          </select></div>
+        <div><label class="config-label" for="ou-porte">Porte do produto</label><select class="config-select"
+            id="ou-porte" onchange="estimar('outro')">
+            <option value="pequeno">Pequeno</option>
+            <option value="medio">Médio</option>
+            <option value="grande">Grande / elaborado</option>
+          </select></div>
+        <div><label class="config-label" for="ou-emb">Embalagem</label><select class="config-select" id="ou-emb"
+            onchange="estimar('outro')">
+            <option value="saquinho">Saquinho plástico</option>
+            <option value="envelope_kraft">Envelope kraft</option>
+            <option value="caixa">Caixinha</option>
+            <option value="sem">Sem embalagem</option>
+          </select></div>
+        <div><label class="config-label" for="ou-imp">Impressão necessária</label><select class="config-select"
+            id="ou-imp" onchange="estimar('outro')">
+            <option value="sem">Sem impressão</option>
+            <option value="pb">P&B (gráfica)</option>
+            <option value="colorido">Colorido (gráfica)</option>
+            <option value="propria">Impressora própria</option>
+          </select></div>
+      </div>
+      <div class="est-cards">
+        <div class="est-card">
+          <div class="est-card-label">🎨 Materiais</div>
+          <div class="est-card-value" id="ou-v1">—</div>
+          <div class="est-card-detail" id="ou-d1">—</div>
+          <div class="est-card-source" id="ou-s1">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">📦 Embalagem</div>
+          <div class="est-card-value" id="ou-v2">—</div>
+          <div class="est-card-detail" id="ou-d2">—</div>
+          <div class="est-card-source" id="ou-s2">—</div>
+        </div>
+        <div class="est-card">
+          <div class="est-card-label">🖨️ Impressão</div>
+          <div class="est-card-value" id="ou-v3">—</div>
+          <div class="est-card-detail" id="ou-d3">—</div>
+          <div class="est-card-source" id="ou-s3">—</div>
+        </div>
+      </div>
+      <div class="apply-row"><button class="apply-btn" onclick="aplicar('outro','all')">✦ Aplicar todos os
+          valores</button><button class="apply-btn green" onclick="aplicar('outro','mat')">↓ Só materiais</button></div>
+      <div class="painel-note"><strong>💡 Estimativa genérica:</strong> valores aproximados para referência. Para maior
+        precisão, preencha os campos manualmente.</div>
+    </div>
+
+    <!-- FORMULÁRIO PRINCIPAL -->
+    <div class="calc-grid">
+      <div class="card">
+        <div class="card-title"><span class="dot"></span> Custos de Produção</div>
+        <div class="field">
+          <label>Materiais <span>(papel, tinta, capa, arame…)</span></label>
+          <div class="input-wrap" id="w-mat"><span class="prefix">R$</span><input type="number" id="materiais" min="0"
+              step="0.01" placeholder="ex: 12,50" inputmode="decimal" oninput="recalc()"></div>
+        </div>
+        <div class="field">
+          <label>Embalagem <span>(caixa, kraft, laço…)</span></label>
+          <div class="input-wrap" id="w-emb"><span class="prefix">R$</span><input type="number" id="embalagem" min="0"
+              step="0.01" placeholder="ex: 4,00" inputmode="decimal" oninput="recalc()"></div>
+        </div>
+        <div class="field">
+          <label>Impressão / Plotagem</label>
+          <div class="input-wrap" id="w-imp"><span class="prefix">R$</span><input type="number" id="impressao" min="0"
+              step="0.01" placeholder="ex: 8,00" inputmode="decimal" oninput="recalc()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot green"></span> Seu Trabalho</div>
+        <div class="field">
+          <label>Tempo de produção <span>(horas)</span></label>
+          <div class="input-wrap"><span class="prefix">h</span><input type="number" id="horas" min="0" step="0.5"
+              placeholder="ex: 2" inputmode="decimal" oninput="recalc()"></div>
+        </div>
+        <div class="field">
+          <label>Valor da sua hora</label>
+          <div class="input-wrap"><span class="prefix">R$</span><input type="number" id="valorHora" min="0" step="1"
+              placeholder="ex: 25" inputmode="decimal" oninput="recalc()"></div>
+        </div>
+        <div class="field">
+          <label>Qtd. produzida <span>(peças no lote)</span></label>
+          <div class="input-wrap"><span class="prefix">un</span><input type="number" id="quantidade" min="1" step="1"
+              value="1" inputmode="numeric" oninput="recalc()"></div>
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-title"><span class="dot yellow"></span> Margem &amp; Taxas</div>
+        <div class="field">
+          <label>Margem de lucro desejada</label>
+          <div class="range-wrapper">
+            <input type="range" id="margem" min="20" max="200" value="100"
+              oninput="updateRange(this,'margemVal','%');recalc()">
+            <span class="range-value" id="margemVal">100%</span>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-text">
+            <div class="toggle-label">Taxa de plataforma</div>
+            <div class="toggle-sublabel">Elo7, ML, Instagram (+15%)</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="taxaPlataforma" onchange="recalc()"><span
+              class="slider-toggle"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-text">
+            <div class="toggle-label">Produto personalizado</div>
+            <div class="toggle-sublabel">Exclusividade (+20%)</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="personalizado" onchange="recalc()"><span
+              class="slider-toggle"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-text">
+            <div class="toggle-label">Frete incluso no preço</div>
+            <div class="toggle-sublabel">Adiciona R$18 ao total</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="freteIncluso" onchange="recalc()"><span
+              class="slider-toggle"></span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="calcular()">✦ Calcular Preço</button>
+      <button class="btn btn-secondary" onclick="limpar()">↺ Limpar</button>
+    </div>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-label">Previsão de preço de venda</div>
+      <div class="price-range">
+        <span class="price-min" id="priceMin">—</span>
+        <span class="price-sep">a</span>
+        <span class="price-max" id="priceMax">—</span>
+        <span class="price-ideal" id="priceIdeal"></span>
+      </div>
+      <div class="result-breakdown">
+        <div class="breakdown-item">
+          <div class="breakdown-name">Custo material</div>
+          <div class="breakdown-value rose" id="bCusto">—</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Mão de obra</div>
+          <div class="breakdown-value rose" id="bMaoObra">—</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Lucro por peça</div>
+          <div class="breakdown-value green" id="bLucro">—</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Margem real</div>
+          <div class="breakdown-value yellow" id="bMargem">—</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Preço mínimo</div>
+          <div class="breakdown-value" id="bMin">—</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Preço sugerido</div>
+          <div class="breakdown-value" id="bSug">—</div>
+        </div>
+      </div>
+      <div class="alert-box" id="alertBox" style="display:none"></div>
+      <div class="wa-section">
+        <div class="wa-label">📤 Compartilhar orçamento</div>
+        <div class="wa-input-row">
+          <input class="wa-input" id="waNomeProduto" type="text" placeholder="Nome do produto (ex: Planner Floral A5)"
+            maxlength="80">
+          <button class="wa-btn" onclick="enviarWhatsApp()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.14 1.544 5.874L.057 23.428a.5.5 0 0 0 .614.614l5.554-1.487A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.898 9.898 0 0 1-5.031-1.371l-.361-.214-3.737 1.001 1.001-3.737-.214-.361A9.898 9.898 0 0 1 2.106 12C2.106 6.527 6.527 2.106 12 2.106S21.894 6.527 21.894 12 17.473 21.894 12 21.894z" />
+            </svg>
+            Enviar pelo WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="market-compare" id="marketCompare">
+      <div class="compare-title">📊 Como seu preço se compara ao mercado</div>
+      <div id="compareRows"></div>
+    </div>
+
+    <div class="tips">
+      <div class="tips-title">✨ Dicas para precificar bem</div>
+      <div class="tip-item"><span class="tip-icon">💡</span>Nunca venda abaixo do custo + mão de obra. Isso desvaloriza
+        seu trabalho e gera prejuízo invisível.</div>
+      <div class="tip-item"><span class="tip-icon">📦</span>Inclua embalagem no custo: papel kraft, laço, tag e cartão
+        somam facilmente R$4–R$12 por pedido.</div>
+      <div class="tip-item"><span class="tip-icon">⏱️</span>Conte o tempo de design, montagem E fotografia. Muitos
+        criadores esquecem as horas de planejamento.</div>
+      <div class="tip-item"><span class="tip-icon">🎨</span>Produtos personalizados valem 20–40% a mais do que itens de
+        prateleira — comunique isso ao cliente.</div>
+      <div class="tip-item"><span class="tip-icon">🏷️</span>Pesquise sempre: Elo7, Mercado Livre, Instagram e sites
+        como A.Craft e Lado B são ótimas referências.</div>
+      <div class="tip-item"><span class="tip-icon">📈</span>Reajuste seus preços a cada 3 meses considerando variação de
+        materiais e inflação.</div>
+    </div>
+
+    <footer>Tícia Artes · Calculadora desenvolvida com base em pesquisa de preços em Elo7, Lado B Papelaria, A.Craft,
+      Bromelia, Imagicriar, Fortini Paper, JMC Shop, Marpax, Carbopel, Papelândia Atacado, Star Papelaria e grandes
+      papelarias brasileiras · 2025</footer>
   </div>
-</div>
 
-<div class="market-compare" id="marketCompare">
-  <div class="compare-title">📊 Como seu preço se compara ao mercado</div>
-  <div id="compareRows"></div>
-</div>
-
-<div class="tips">
-  <div class="tips-title">✨ Dicas para precificar bem</div>
-  <div class="tip-item"><span class="tip-icon">💡</span>Nunca venda abaixo do custo + mão de obra. Isso desvaloriza seu trabalho e gera prejuízo invisível.</div>
-  <div class="tip-item"><span class="tip-icon">📦</span>Inclua embalagem no custo: papel kraft, laço, tag e cartão somam facilmente R$4–R$12 por pedido.</div>
-  <div class="tip-item"><span class="tip-icon">⏱️</span>Conte o tempo de design, montagem E fotografia. Muitos criadores esquecem as horas de planejamento.</div>
-  <div class="tip-item"><span class="tip-icon">🎨</span>Produtos personalizados valem 20–40% a mais do que itens de prateleira — comunique isso ao cliente.</div>
-  <div class="tip-item"><span class="tip-icon">🏷️</span>Pesquise sempre: Elo7, Mercado Livre, Instagram e sites como A.Craft e Lado B são ótimas referências.</div>
-  <div class="tip-item"><span class="tip-icon">📈</span>Reajuste seus preços a cada 3 meses considerando variação de materiais e inflação.</div>
-</div>
-
-<footer>Tícia Artes · Calculadora desenvolvida com base em pesquisa de preços em Elo7, Lado B Papelaria, A.Craft, Bromelia, Imagicriar, Fortini Paper, JMC Shop, Marpax, Carbopel, Papelândia Atacado, Star Papelaria e grandes papelarias brasileiras · 2025</footer>
-</div>
-
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
