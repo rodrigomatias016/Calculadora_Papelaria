@@ -110,14 +110,6 @@ h1 em {
   font-style: italic
 }
 
-.brand-logo {
-  max-width: 80px;
-  height: auto;
-  border-radius: 50%;
-  margin-bottom: .8rem;
-  box-shadow: 0 4px 12px var(--shadow)
-}
-
 .subtitle {
   color: var(--text-light);
   font-size: clamp(.7rem, 2.5vw, .86rem);
@@ -1239,11 +1231,9 @@ footer {
 .header-flex .brand-logo {
   margin-bottom: 0;
   flex-shrink: 0;
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border: 3px solid var(--text);
-  padding: 2px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
 }
 
 .header-flex .header-text {
