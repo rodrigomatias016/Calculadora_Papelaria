@@ -37,8 +37,11 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(61, 43, 31, .04) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: url('../img/pattern.png');
+  background-size: 350px 350px;
+  background-repeat: repeat;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0
 }
